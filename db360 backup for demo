@@ -1,0 +1,433 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2018 at 08:02 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db360`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `career`
+--
+
+CREATE TABLE `career` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `career`
+--
+
+INSERT INTO `career` (`id`, `title`) VALUES
+(1, 'Software Developer'),
+(2, 'Database Administrator'),
+(3, 'Computer Hardware Engineer'),
+(4, 'Computer Systems Analyst'),
+(5, 'Computer Network Architect'),
+(6, 'Web Developer'),
+(7, 'Information Security Analyst'),
+(8, 'Computer Programmer'),
+(9, 'Computer and Information Systems Managers'),
+(10, 'Project Manager');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classsection`
+--
+
+CREATE TABLE `classsection` (
+  `courseid` varchar(5) NOT NULL,
+  `studentid` int(11) NOT NULL,
+  `semester` text NOT NULL,
+  `year` int(11) NOT NULL,
+  `grade` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `classsection`
+--
+
+INSERT INTO `classsection` (`courseid`, `studentid`, `semester`, `year`, `grade`) VALUES
+('CS120', 1, 'Fall', 2016, 'A'),
+('CS120', 2, 'Fall', 2018, 'F'),
+('CS120', 2, 'Spring', 2018, 'B'),
+('CS121', 1, 'Spring', 2017, 'B'),
+('CS121', 3, 'Fall', 2016, 'A'),
+('CS150', 1, 'Spring', 2017, 'B'),
+('CS150', 3, 'Fall', 2016, 'A'),
+('CS210', 1, 'Fall', 2017, 'A'),
+('CS210', 3, 'Fall', 2016, 'A'),
+('CS240', 1, 'Fall', 2017, 'B'),
+('CS240', 3, 'Fall', 2016, 'A'),
+('CS270', 1, 'Fall', 2017, 'C'),
+('CS270', 3, 'Fall', 2016, 'B'),
+('CS360', 1, 'Spring', 2018, 'A'),
+('CS383', 1, 'Spring', 2018, 'B'),
+('CS383', 3, 'Spring', 2017, 'A'),
+('CS385', 1, 'Fall', 2018, 'C'),
+('CS385', 3, 'Spring', 2017, 'A'),
+('CS395', 1, 'Spring', 2019, 'A'),
+('CS395', 3, 'Spring', 2017, 'A'),
+('CS400', 1, 'Spring', 2019, 'A'),
+('CS400', 3, 'Spring', 2017, 'A'),
+('CS445', 1, 'Spring', 2019, 'C'),
+('CS445', 3, 'Fall', 2017, 'A'),
+('CS452', 1, 'Spring', 2019, 'A'),
+('CS480', 1, 'Spring', 2019, 'A'),
+('CS480', 3, 'Fall', 2017, 'A'),
+('CS481', 1, 'Fall', 2019, 'C'),
+('CS481', 3, 'Fall', 2017, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
+
+CREATE TABLE `course` (
+  `id` varchar(5) NOT NULL,
+  `title` text NOT NULL,
+  `credit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id`, `title`, `credit`) VALUES
+('CS112', 'Computational Thinking and Problem Solving', 3),
+('CS120', 'Computer Science 1', 4),
+('CS121', 'Computer Science 2', 3),
+('CS150', 'Computer Organization and Architecture', 3),
+('CS210', 'Programming Languages', 3),
+('CS240', 'Computer Operating Systems', 3),
+('CS270', 'System Software', 3),
+('CS324', 'Computer Graphics', 3),
+('CS328', 'Introduction to Computer Game Development', 3),
+('CS336', 'Introduction to Information Assurance', 3),
+('CS360', 'Database Systems', 3),
+('CS383', 'Software Engineering', 3),
+('CS385', 'Theory of Computation', 3),
+('CS395', 'Analysis of Algorithms', 3),
+('CS398', 'Computer Science Cooperative Internship', 3),
+('CS400', 'Contemporary Issues in CS', 1),
+('CS404', 'Python for Machine Learning', 3),
+('CS411', 'Parallel Programming', 3),
+('CS415', 'Computational Biology: Sequence Analysis', 3),
+('CS420', 'Data Communication Systems', 3),
+('CS424', 'Advanced Computer Graphics', 3),
+('CS428', 'Multi-User Games and Virtual Enviornments', 3),
+('CS431', 'Professional Development', 1),
+('CS438', 'Network Security', 3),
+('CS439', 'Applied Security Concepts', 3),
+('CS443', 'Embedded Systems', 3),
+('CS445', 'Compiler Design', 4),
+('CS447', 'Computer and Network Forensics', 3),
+('CS448', 'Survivable Systems and Networks', 3),
+('CS449', 'Fault-Tolerant Systems', 3),
+('CS451', 'Advanced Computer Architecture', 3),
+('CS452', 'Real-Time Operating Systems', 3),
+('CS460', 'Database Management Systems of Design', 3),
+('CS470', 'Artificial Intelligence', 3),
+('CS472', 'Evolutionary Computation', 3),
+('CS475', 'Machine Learning', 3),
+('CS479', 'Data Science', 3),
+('CS480', 'Senior Capstone Design 1', 3),
+('CS481', 'Senior Capstone Design 2', 3),
+('CS499', 'Asset Design for VR Games', 2),
+('CS500', 'Master\'s Research and Thesis', 3),
+('CS501', 'Contemp/Issues in CS', 1),
+('CS543', 'Embedded Systems', 3),
+('EN317', 'Technical Writing', 3),
+('MA170', 'Analytic Geometry and Calculus 1', 4),
+('MA175', 'Analytic Geometry and Calculus 2', 4),
+('MA301', 'Probability and Statistics', 3),
+('MA330', 'Linear Algebra', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `graduation`
+--
+
+CREATE TABLE `graduation` (
+  `courseid` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `graduation`
+--
+
+INSERT INTO `graduation` (`courseid`) VALUES
+('CS120'),
+('CS121'),
+('CS150'),
+('CS210'),
+('CS240'),
+('CS270'),
+('CS383'),
+('CS385'),
+('CS395'),
+('CS400'),
+('CS445'),
+('CS480'),
+('CS481'),
+('MA170'),
+('MA175'),
+('MA301'),
+('MA330');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `preq`
+--
+
+CREATE TABLE `preq` (
+  `courseid` varchar(5) NOT NULL,
+  `requires` varchar(5) NOT NULL,
+  `minimumgrade` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `preq`
+--
+
+INSERT INTO `preq` (`courseid`, `requires`, `minimumgrade`) VALUES
+('CS121', 'CS120', 'C'),
+('CS150', 'CS120', 'D'),
+('CS210', 'CS121', 'D'),
+('CS240', 'CS121', 'D'),
+('CS240', 'CS150', 'D'),
+('CS270', 'CS121', 'D'),
+('CS324', 'CS121', 'D'),
+('CS324', 'MA330', 'D'),
+('CS328', 'CS210', 'D'),
+('CS328', 'CS240', 'D'),
+('CS336', 'CS240', 'D'),
+('CS360', 'CS240', 'D'),
+('CS360', 'CS270', 'D'),
+('CS383', 'CS210', 'D'),
+('CS383', 'CS240', 'D'),
+('CS383', 'CS270', 'D'),
+('CS395', 'CS121', 'D'),
+('CS395', 'MA175', 'D'),
+('CS411', 'CS395', 'D'),
+('CS420', 'CS150', 'D'),
+('CS420', 'CS240', 'D'),
+('CS424', 'CS324', 'D'),
+('CS424', 'MA175', 'D'),
+('CS428', 'CS210', 'D'),
+('CS428', 'CS324', 'D'),
+('CS428', 'CS328', 'D'),
+('CS438', 'CS336', 'D'),
+('CS439', 'CS336', 'D'),
+('CS445', 'CS210', 'D'),
+('CS445', 'CS385', 'D'),
+('CS447', 'CS336', 'D'),
+('CS449', 'CS240', 'D'),
+('CS451', 'CS150', 'D'),
+('CS451', 'MA301', 'D'),
+('CS452', 'CS240', 'D'),
+('CS460', 'CS360', 'D'),
+('CS470', 'CS210', 'D'),
+('CS472', 'CS210', 'D'),
+('CS475', 'CS210', 'D'),
+('CS479', 'MA330', 'D'),
+('CS480', 'CS383', 'D'),
+('CS480', 'EN317', 'D'),
+('CS481', 'CS480', 'D');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `studentid` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`studentid`, `name`) VALUES
+(1, 'Joel'),
+(2, 'David'),
+(3, 'Renee'),
+(4, 'Reed'),
+(5, 'Melissa'),
+(6, 'Melissa'),
+(7, 'Angela'),
+(8, 'Charlyn'),
+(9, 'Timothy'),
+(10, 'Loren'),
+(11, 'Daniel');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wants`
+--
+
+CREATE TABLE `wants` (
+  `careerid` int(11) NOT NULL,
+  `courseid` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wants`
+--
+
+INSERT INTO `wants` (`careerid`, `courseid`) VALUES
+(1, 'CS360'),
+(1, 'CS460'),
+(1, 'CS472'),
+(1, 'CS475'),
+(1, 'CS479'),
+(2, 'CS360'),
+(2, 'CS460'),
+(3, 'CS449'),
+(3, 'CS452'),
+(3, 'CS543'),
+(4, 'CS360'),
+(4, 'CS448'),
+(4, 'CS449'),
+(4, 'CS451'),
+(4, 'CS452'),
+(4, 'CS460'),
+(5, 'CS336'),
+(5, 'CS360'),
+(5, 'CS411'),
+(5, 'CS438'),
+(5, 'CS439'),
+(5, 'CS448'),
+(5, 'CS452'),
+(5, 'CS460'),
+(6, 'CS360'),
+(6, 'CS460'),
+(7, 'CS336'),
+(7, 'CS438'),
+(7, 'CS439'),
+(7, 'CS447'),
+(7, 'CS448'),
+(8, 'CS360'),
+(8, 'CS411'),
+(8, 'CS460'),
+(8, 'CS472'),
+(8, 'CS479'),
+(9, 'CS360'),
+(9, 'CS460'),
+(9, 'CS479'),
+(10, 'CS336'),
+(10, 'CS438'),
+(10, 'CS439'),
+(10, 'CS447'),
+(10, 'CS448');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `career`
+--
+ALTER TABLE `career`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `classsection`
+--
+ALTER TABLE `classsection`
+  ADD PRIMARY KEY (`courseid`,`studentid`,`semester`(10),`year`) USING BTREE,
+  ADD KEY `classsection_ibfk_2` (`studentid`);
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `graduation`
+--
+ALTER TABLE `graduation`
+  ADD PRIMARY KEY (`courseid`);
+
+--
+-- Indexes for table `preq`
+--
+ALTER TABLE `preq`
+  ADD PRIMARY KEY (`courseid`,`requires`),
+  ADD KEY `requires` (`requires`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`studentid`);
+
+--
+-- Indexes for table `wants`
+--
+ALTER TABLE `wants`
+  ADD PRIMARY KEY (`careerid`,`courseid`),
+  ADD KEY `courseid` (`courseid`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `classsection`
+--
+ALTER TABLE `classsection`
+  ADD CONSTRAINT `classsection_ibfk_2` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `classsection_ibfk_3` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`);
+
+--
+-- Constraints for table `graduation`
+--
+ALTER TABLE `graduation`
+  ADD CONSTRAINT `graduation_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`);
+
+--
+-- Constraints for table `preq`
+--
+ALTER TABLE `preq`
+  ADD CONSTRAINT `preq_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`),
+  ADD CONSTRAINT `preq_ibfk_2` FOREIGN KEY (`requires`) REFERENCES `course` (`id`);
+
+--
+-- Constraints for table `wants`
+--
+ALTER TABLE `wants`
+  ADD CONSTRAINT `wants_ibfk_1` FOREIGN KEY (`careerid`) REFERENCES `career` (`id`),
+  ADD CONSTRAINT `wants_ibfk_2` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
