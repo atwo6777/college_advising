@@ -11,7 +11,8 @@ class App extends Component {
     classList: null,
     professionList: null,
     chosenProfession: undefined,
-    recommendedClassList: null
+    recommendedClassList: null,
+    singleSemester: true
   };
 
   componentDidMount() {
@@ -102,17 +103,22 @@ class App extends Component {
               </li>
             ))}
           </ul>
-          <label>Specify Desired Career</label>
-          <select onChange={this.updateDropdown.bind(this)}>
-            {_.map(this.state.professionList, option => (
-              <option key={option.id} value={option.id}>
-                {option.title}
-              </option>
-            ))}
-          </select>
+          <div>
+            <label>Specify Desired Career</label>
+            <select onChange={this.updateDropdown.bind(this)}>
+              {_.map(this.state.professionList, option => (
+                <option key={option.id} value={option.id}>
+                  {option.title}
+                </option>
+              ))}
+            </select>
+          </div>
           <button onClick={this.handeSuggestClasses.bind(this)}>
-            Request Class Suggestions
+            All Classes Taken
           </button>
+          {/* <button onClick={this.handeSuggestClasses.bind(this)}>
+            Request Semester Suggestions
+          </button> */}
 
           <div>
             {this.state.recommendedClassList === null ? (
@@ -132,11 +138,17 @@ class App extends Component {
                         <li key={item.id + item.requires} className="classList">
                           <div>{item.id}</div> <div>{item.title}</div>{" "}
                           <div>
-                            {"Preq: " +
-                              item.requires +
-                              " with a " +
-                              item.minimumgrade +
-                              " or better."}
+                            {item.requires !== null ? (
+                              <div>
+                                {"Preq: " +
+                                  item.requires +
+                                  " with a " +
+                                  item.minimumgrade +
+                                  " or better."}
+                              </div>
+                            ) : (
+                              <div />
+                            )}
                           </div>
                         </li>
                       ))}

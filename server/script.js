@@ -57,11 +57,11 @@ app.post("/careerList", (req, res) => {
 
 app.post("/suggestClasses", (req, res) => {
   let query =
-    "SELECT * FROM course INNER JOIN preq ON course.id = preq.courseid WHERE course.id IN ( SELECT courseid FROM graduation UNION SELECT courseid FROM wants WHERE wants.careerid =" +
-    req.body.studentId +
-    ") AND course.id NOT IN ( SELECT courseid FROM student natural JOIN classsection INNER JOIN course ON course.id = classsection.courseid WHERE student.studentid = " +
+    "SELECT * FROM course LEFT JOIN preq ON course.id = preq.courseid WHERE course.id IN(( SELECT courseid as id FROM graduation UNION SELECT courseid as id FROM wants WHERE wants.careerid = " +
     req.body.chosenProfession +
-    ")";
+    " )) AND course.id NOT IN ( SELECT courseid FROM classsection WHERE studentid = " +
+    req.body.studentId +
+    " )";
   connection.query(
     query,
 
