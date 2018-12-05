@@ -32,9 +32,8 @@ app.post("/login", (req, res) => {
 
     function(err, rows, fields) {
       if (!!err) {
-        console.log("Error in query: " + err);
+        res.send(undefined);
       } else {
-        // console.log;
         res.send(rows);
       }
     }
@@ -55,7 +54,7 @@ app.post("/careerList", (req, res) => {
   );
 });
 
-app.post("/suggestClasses", (req, res) => {
+app.post("/allClassesNeeded", (req, res) => {
   let query =
     "SELECT * FROM course LEFT JOIN preq ON course.id = preq.courseid WHERE course.id IN(( SELECT courseid as id FROM graduation UNION SELECT courseid as id FROM wants WHERE wants.careerid = " +
     req.body.chosenProfession +
@@ -65,6 +64,39 @@ app.post("/suggestClasses", (req, res) => {
   connection.query(
     query,
 
+    function(err, rows, fields) {
+      if (!!err) {
+        console.log("Error in query: " + err);
+      } else {
+        res.send(rows);
+      }
+    }
+  );
+});
+
+app.post("/suggestClasses", (req, res) => {
+  let query =
+    "SELECT * FROM course LEFT JOIN preq ON course.id = preq.courseid WHERE course.id IN(( SELECT courseid as id FROM graduation UNION SELECT courseid as id FROM wants WHERE wants.careerid = " +
+    req.body.chosenProfession +
+    " )) AND course.id NOT IN ( SELECT courseid FROM classsection WHERE studentid = " +
+    req.body.studentId +
+    " ) ORDER BY course.id";
+  connection.query(
+    query,
+
+    function(err, rows, fields) {
+      if (!!err) {
+        console.log("Error in query: " + err);
+      } else {
+        res.send(rows);
+      }
+    }
+  );
+});
+
+app.post("/preqList", (req, res) => {
+  connection.query(
+    "SELECT a.requires, a.initial, b.secondary, c.third FROM (SELECT requires, courseid, count(requires) initial FROM preq GROUP BY requires) as a LEFT JOIN (SELECT requires, courseid, count(requires) secondary FROM preq GROUP BY requires) as b on  a.courseid = b.requires LEFT JOIN (SELECT requires, courseid, count(requires) third FROM preq GROUP BY requires) as c on b.courseid = c.requires",
     function(err, rows, fields) {
       if (!!err) {
         console.log("Error in query: " + err);
