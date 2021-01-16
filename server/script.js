@@ -41,17 +41,13 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/careerList", (req, res) => {
-  connection.query(
-    "SELECT * FROM career",
-
-    function(err, rows, fields) {
-      if (!!err) {
-        console.log("Error in query: " + err);
-      } else {
-        res.send(rows);
-      }
+  connection.query("SELECT * FROM career", function(err, rows, fields) {
+    if (!!err) {
+      console.log("Error in query: " + err);
+    } else {
+      res.send(rows);
     }
-  );
+  });
 });
 
 app.post("/allClassesNeeded", (req, res) => {
